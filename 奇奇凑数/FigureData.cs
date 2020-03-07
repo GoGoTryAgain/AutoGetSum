@@ -27,8 +27,6 @@ namespace 奇奇凑数
                 }
             }
 
-
-
             int comNum = 1;
             while (comNum < srcData.Count)
             {
@@ -42,10 +40,15 @@ namespace 奇奇凑数
                 do
                 {
                     List<double> validDataList = new List<double>();
-                    if (checkSum(ref validDataList, ref SrcDataindex, ref srcData, dataWant, RangeData))
+                    bool NeedDiscardOtherTemp = false;
+                    if (checkSum(ref validDataList, ref SrcDataindex, ref srcData, dataWant, RangeData, NeedDiscardOtherTemp))
                     {
                         resultList.Add(validDataList);
                         Console.WriteLine("get a  result");
+                    }
+                    if (NeedDiscardOtherTemp)
+                    {
+                        break;
                     }
                 } while (ToaddIndex(ref SrcDataindex, ref srcData) && resultList.Count <= 10);
                 
@@ -92,7 +95,8 @@ namespace 奇奇凑数
             return false;
         }
 
-        private bool checkSum(ref List<double> validDataList, ref List<int> SrcDataindex, ref List<double> srcData, Double dataWant, Double RangeData)
+        private bool checkSum(ref List<double> validDataList, ref List<int> SrcDataindex,
+            ref List<double> srcData, Double dataWant, Double RangeData,bool discradNextTemp)
         {
             double sum = 0;
             for(int i =0;i < SrcDataindex.Count; i++)
@@ -105,6 +109,12 @@ namespace 奇奇凑数
             {
                 return true;
             }
+
+            if (sum - dataWant > RangeData)
+            {
+                discradNextTemp = true;
+            }
+
             return false;
         }
 
