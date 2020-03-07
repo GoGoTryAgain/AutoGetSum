@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace 奇奇凑数
 {
@@ -15,6 +16,7 @@ namespace 奇奇凑数
         FigureData figuredata = new FigureData();
         private float x;//定义当前窗体的宽度
         private float y;//定义当前窗体的高度
+        List<List<double>> resultList = new List<List<double>>();
 
         public form1()
         {
@@ -67,42 +69,25 @@ namespace 奇奇凑数
         }
 
 
-
+        static private bool click_enable = true;
         private void dataHandleButton_Click(object sender, EventArgs e)
         {
-            List<double> srcData = new List<double>();
-            List<List<double>> resultList = new List<List<double>>();
-            Stopwatch sw = new Stopwatch();
-            if (dataHandleButton.Enabled == false)
+            if (click_enable == false)
             {
+                MessageBox.Show("o(╥﹏╥)o  已经很努力在计算了");
                 return;
             }
-            dataHandleButton.Enabled = false;
-
-            sw.Start();
+            click_enable = false;
             resultGridView.Rows.Clear();
+            resultGridView.Columns.Clear();
+            drawThread = new Thread(new ThreadStart(GetResult));
+            drawThread.IsBackground = true;
+            drawThread.Start();
 
-            foreach (var value in srcInputTextbox.Lines)
-            {
-                if (value == "")
-                {
-                    continue;
-                }
-                srcData.Add(Convert.ToDouble(value));
-            }
-            resultList = figuredata.GetGatherResult(srcData, Convert.ToDouble(dataWant.Text), Convert.ToDouble(rangeTextbox.Text));
-            updateGridViewResult(resultList, dataWant.Text.ToString());
-            sw.Stop();
-            TimeSpan dt = sw.Elapsed;
-            Console.WriteLine("程序耗时:'{0}'秒", dt);
-            double time = dt.TotalSeconds;
-            MessageBox.Show("程序耗时："+ time.ToString() + "s，一共找到 " +
-                resultList.Count.ToString()+ " 个组合");
-            dataHandleButton.Enabled = true;
             Console.ReadLine();
         }
 
-        public void updateGridViewResult(List<List<double>> resultList,string datawant)
+        private void initGridView()
         {
             DataGridViewTextBoxColumn acCode = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn acCode2 = new DataGridViewTextBoxColumn();
@@ -122,13 +107,24 @@ namespace 奇奇凑数
             resultGridView.Columns.Add(acCode0);
             resultGridView.Columns.Add(acCode);
             resultGridView.Columns.Add(acCode2);
+        }
+        public void updateGridViewResult(List<List<double>> resultList,string datawant)
+        {
+            if(resultList.Count <= 0)
+            {
+                return;
+            }
+            if (resultGridView.Columns.Count <= 0)
+            {
+                initGridView();
+            }
+
             resultGridView.Rows.Add(resultList.Count);
             for (int i = 0; i < resultList.Count; i++)
             {
                 resultGridView.Rows[i].Cells["Index"].Value = i + 1;
                 for (int j =0; j < resultList[i].Count; j ++)
                 {
-                    
                     resultGridView.Rows[i].Cells["datawant"].Value = datawant;
 
                     if (j == 0)
@@ -161,6 +157,42 @@ namespace 奇奇凑数
             float newx = (this.Width) / x;
             float newy = (this.Height) / y;
             setControls(newx, newy, this);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        Thread drawThread = null;
+        public delegate void Action2<in T,in T1>(T t, T1 t1);
+        delegate void drawDelegate(int i);
+
+        private void GetResult()
+        {
+            List<double> srcData = new List<double>();
+            resultList.Clear();
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            foreach (var value in srcInputTextbox.Lines)
+            {
+                if (value == "")
+                {
+                    continue;
+                }
+                srcData.Add(Convert.ToDouble(value));
+            }
+            figuredata.GetGatherResult(srcData, ref resultList, Convert.ToDouble(dataWant.Text), Convert.ToDouble(rangeTextbox.Text));
+            Action2< List< List<double> >,string> a = new Action2<List<List<double>>, string>(updateGridViewResult);
+            Invoke(a, resultList, dataWant.Text.ToString());
+            sw.Stop();
+            TimeSpan dt = sw.Elapsed;
+            Console.WriteLine("程序耗时:'{0}'秒", dt);
+            double time = dt.TotalSeconds;
+            MessageBox.Show("程序耗时：" + time.ToString() + "s，一共找到 " +
+                resultList.Count.ToString() + " 个组合");
+            click_enable = true;
         }
     }
 }

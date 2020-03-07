@@ -8,9 +8,8 @@ namespace 奇奇凑数
     class FigureData
     {
         
-        public List<List<double>> GetGatherResult(List<double> srcData, Double dataWant, Double RangeData)
+        public bool GetGatherResult(List<double> srcData,ref List<List<double>> resultList ,Double dataWant, Double RangeData)
         {
-            List<List<double>> resultList = new List<List<double>>();
             for (int i = srcData.Count - 1; i > 0; i--)
             {
                 if (srcData[i] >= dataWant || srcData[i] == 0)
@@ -41,21 +40,21 @@ namespace 奇奇凑数
                 {
                     List<double> validDataList = new List<double>();
                     bool NeedDiscardOtherTemp = false;
-                    if (checkSum(ref validDataList, ref SrcDataindex, ref srcData, dataWant, RangeData, NeedDiscardOtherTemp))
+                    if (checkSum(ref validDataList, ref SrcDataindex, ref srcData, dataWant, RangeData,ref NeedDiscardOtherTemp))
                     {
                         resultList.Add(validDataList);
                         Console.WriteLine("get a  result");
                     }
                     if (NeedDiscardOtherTemp)
                     {
-                        break;
+                        SrcDataindex[SrcDataindex.Count - 1] = srcData.Count - (SrcDataindex.Count - comNum);
                     }
                 } while (ToaddIndex(ref SrcDataindex, ref srcData) && resultList.Count < 50);
                 
                 comNum++;
             }
 
-            return resultList;
+            return true;
         }
             
 
@@ -96,7 +95,7 @@ namespace 奇奇凑数
         }
 
         private bool checkSum(ref List<double> validDataList, ref List<int> SrcDataindex,
-            ref List<double> srcData, Double dataWant, Double RangeData,bool discradNextTemp)
+            ref List<double> srcData, Double dataWant, Double RangeData,ref bool discradNextTemp)
         {
             double sum = 0;
             for(int i =0;i < SrcDataindex.Count; i++)
@@ -113,7 +112,7 @@ namespace 奇奇凑数
             // the parm is low2high so if sum is greater than datawant ,next param will greater too 
             if (sum - dataWant > RangeData)
             {
-                //discradNextTemp = true;
+                discradNextTemp = true;
             }
 
             return false;
