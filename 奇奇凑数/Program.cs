@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace 弱智凑数
+namespace 奇奇凑数
 {
     static class Program
     {

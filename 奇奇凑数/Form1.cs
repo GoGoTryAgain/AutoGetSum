@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace 弱智凑数
+namespace 奇奇凑数
 {
     public partial class form1 : Form
     {

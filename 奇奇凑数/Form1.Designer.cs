@@ -1,4 +1,4 @@
-﻿namespace 弱智凑数
+﻿namespace 奇奇凑数
 {
     partial class form1
     {
