@@ -50,7 +50,7 @@ namespace 奇奇凑数
                     {
                         break;
                     }
-                } while (ToaddIndex(ref SrcDataindex, ref srcData) && resultList.Count <= 10);
+                } while (ToaddIndex(ref SrcDataindex, ref srcData) && resultList.Count < 50);
                 
                 comNum++;
             }
@@ -113,7 +113,7 @@ namespace 奇奇凑数
             // the parm is low2high so if sum is greater than datawant ,next param will greater too 
             if (sum - dataWant > RangeData)
             {
-                discradNextTemp = true;
+                //discradNextTemp = true;
             }
 
             return false;

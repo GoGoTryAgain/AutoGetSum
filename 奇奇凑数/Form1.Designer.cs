@@ -41,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.rangeTextbox = new System.Windows.Forms.TextBox();
             this.roundDataHandleButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.resultGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,8 +50,9 @@
             this.resultGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.resultGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.resultGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.resultGridView.Location = new System.Drawing.Point(206, 110);
+            this.resultGridView.Location = new System.Drawing.Point(209, 96);
             this.resultGridView.Name = "resultGridView";
+            this.resultGridView.RowHeadersVisible = false;
             this.resultGridView.RowHeadersWidth = 51;
             this.resultGridView.RowTemplate.Height = 27;
             this.resultGridView.Size = new System.Drawing.Size(519, 364);
@@ -58,7 +60,7 @@
             // 
             // srcInputTextbox
             // 
-            this.srcInputTextbox.Location = new System.Drawing.Point(18, 110);
+            this.srcInputTextbox.Location = new System.Drawing.Point(21, 96);
             this.srcInputTextbox.Multiline = true;
             this.srcInputTextbox.Name = "srcInputTextbox";
             this.srcInputTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -69,7 +71,7 @@
             // srcInputLabel
             // 
             this.srcInputLabel.AutoSize = true;
-            this.srcInputLabel.Location = new System.Drawing.Point(54, 83);
+            this.srcInputLabel.Location = new System.Drawing.Point(57, 69);
             this.srcInputLabel.Name = "srcInputLabel";
             this.srcInputLabel.Size = new System.Drawing.Size(52, 15);
             this.srcInputLabel.TabIndex = 3;
@@ -78,7 +80,7 @@
             // resultLabel
             // 
             this.resultLabel.AutoSize = true;
-            this.resultLabel.Location = new System.Drawing.Point(433, 83);
+            this.resultLabel.Location = new System.Drawing.Point(436, 69);
             this.resultLabel.Name = "resultLabel";
             this.resultLabel.Size = new System.Drawing.Size(67, 15);
             this.resultLabel.TabIndex = 4;
@@ -86,7 +88,7 @@
             // 
             // dataHandleButton
             // 
-            this.dataHandleButton.Location = new System.Drawing.Point(755, 451);
+            this.dataHandleButton.Location = new System.Drawing.Point(758, 437);
             this.dataHandleButton.Name = "dataHandleButton";
             this.dataHandleButton.Size = new System.Drawing.Size(112, 30);
             this.dataHandleButton.TabIndex = 5;
@@ -96,7 +98,7 @@
             // 
             // dataWant
             // 
-            this.dataWant.Location = new System.Drawing.Point(848, 117);
+            this.dataWant.Location = new System.Drawing.Point(851, 103);
             this.dataWant.Name = "dataWant";
             this.dataWant.Size = new System.Drawing.Size(183, 25);
             this.dataWant.TabIndex = 6;
@@ -105,7 +107,7 @@
             // dataLabel
             // 
             this.dataLabel.AutoSize = true;
-            this.dataLabel.Location = new System.Drawing.Point(748, 117);
+            this.dataLabel.Location = new System.Drawing.Point(751, 103);
             this.dataLabel.Name = "dataLabel";
             this.dataLabel.Size = new System.Drawing.Size(67, 15);
             this.dataLabel.TabIndex = 7;
@@ -114,7 +116,7 @@
             // mulDataLabel
             // 
             this.mulDataLabel.AutoSize = true;
-            this.mulDataLabel.Location = new System.Drawing.Point(748, 263);
+            this.mulDataLabel.Location = new System.Drawing.Point(751, 249);
             this.mulDataLabel.Name = "mulDataLabel";
             this.mulDataLabel.Size = new System.Drawing.Size(97, 15);
             this.mulDataLabel.TabIndex = 8;
@@ -122,7 +124,7 @@
             // 
             // mulDataWant
             // 
-            this.mulDataWant.Location = new System.Drawing.Point(848, 204);
+            this.mulDataWant.Location = new System.Drawing.Point(851, 190);
             this.mulDataWant.Multiline = true;
             this.mulDataWant.Name = "mulDataWant";
             this.mulDataWant.Size = new System.Drawing.Size(183, 128);
@@ -131,7 +133,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(752, 385);
+            this.label1.Location = new System.Drawing.Point(755, 371);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 10;
@@ -139,16 +141,15 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(748, 385);
+            this.label2.Location = new System.Drawing.Point(751, 371);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 11;
             this.label2.Text = "波动范围";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // rangeTextbox
             // 
-            this.rangeTextbox.Location = new System.Drawing.Point(848, 382);
+            this.rangeTextbox.Location = new System.Drawing.Point(851, 368);
             this.rangeTextbox.Name = "rangeTextbox";
             this.rangeTextbox.Size = new System.Drawing.Size(183, 25);
             this.rangeTextbox.TabIndex = 12;
@@ -156,7 +157,7 @@
             // 
             // roundDataHandleButton
             // 
-            this.roundDataHandleButton.Location = new System.Drawing.Point(924, 451);
+            this.roundDataHandleButton.Location = new System.Drawing.Point(927, 437);
             this.roundDataHandleButton.Name = "roundDataHandleButton";
             this.roundDataHandleButton.Size = new System.Drawing.Size(107, 30);
             this.roundDataHandleButton.TabIndex = 13;
@@ -164,11 +165,22 @@
             this.roundDataHandleButton.UseVisualStyleBackColor = true;
             this.roundDataHandleButton.Click += new System.EventHandler(this.roundDataHandleButton_Click);
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(794, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(275, 41);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "小郑小郑  出奇制胜";
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1081, 530);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.roundDataHandleButton);
             this.Controls.Add(this.rangeTextbox);
             this.Controls.Add(this.label2);
@@ -185,6 +197,7 @@
             this.Name = "form1";
             this.Text = "奇奇凑数 V0.0.3";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.form1_Resize_1);
             ((System.ComponentModel.ISupportInitialize)(this.resultGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -206,6 +219,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox rangeTextbox;
         private System.Windows.Forms.Button roundDataHandleButton;
+        private System.Windows.Forms.Label label3;
     }
 }
 
