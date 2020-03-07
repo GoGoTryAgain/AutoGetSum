@@ -110,6 +110,7 @@ namespace 奇奇凑数
                 return true;
             }
 
+            // the parm is low2high so if sum is greater than datawant ,next param will greater too 
             if (sum - dataWant > RangeData)
             {
                 discradNextTemp = true;
